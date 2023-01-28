@@ -1,0 +1,14 @@
+.user_navbar {
+    border: 1px black solid;
+    display: flex;
+    width: 85%;
+    margin: 0;
+    list-style: none;
+    justify-content: space-around;
+    align-items: center;
+    background-color: skyblue;
+    font-size: x-large;
+}
+img {
+    justify-content: flex-start;
+}

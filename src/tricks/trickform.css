@@ -1,0 +1,6 @@
+.trickform {
+    border: 2px blue solid;
+}
+input[type="radio"]{
+    display: none;
+}
