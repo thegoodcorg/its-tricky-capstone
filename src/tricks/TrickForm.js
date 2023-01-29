@@ -5,6 +5,9 @@ import "./trickform.css"
 
 export const TrickForm = () => {
     const [newTrick, updateNewTrick] = useState({ name: "", ownerId: "", description: "", difficulty: 1 })
+    const [formArr, setForm] = useState([{ details: "" }])
+    const [rating, setRating] = useState(1)
+
 
     const handleSaveButtonClick = (event) => {
         event.preventDefault()
@@ -15,10 +18,11 @@ export const TrickForm = () => {
         // TODO: Create the object to be saved to the API
         const ticketToSend = {
             ownerId: trickyUserObject.id,
-            description: newTrick,
-            difficulty: 1
+            name: newTrick.name,
+            description: newTrick.description,
+            difficulty: parseInt(rating)
         }
-
+        console.log(ticketToSend)
         // TODO: Perform the fetch() to POST the object to the API
         fetch("http://localhost:8088/tricks", {
             method: "POST",
@@ -28,8 +32,27 @@ export const TrickForm = () => {
             body: JSON.stringify(ticketToSend)
         }
         )
-            .then(res => res.json)
-            .then(() => {
+            .then(res => res.json())
+            .then((response) => { 
+                let stepCount = 1
+                formArr.map((step, stepCount) => {
+                    const trickResponseObj = {
+                        trickId: response.id,
+                        details: step.details,
+                        order: stepCount + 1
+                    }
+
+                    fetch("http://localhost:8088/steps", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(trickResponseObj)
+                    }
+                    )
+                        .then(res => res.json())
+                        .then(stepCount++)
+                })
 
             }
             )
@@ -58,13 +81,13 @@ export const TrickForm = () => {
                 }></input>
             <br /><br />
             Steps:
-            <StepsForm />
+            <StepsForm formArr={formArr} setter={setForm}/>
             <br /><br />
-            <Difficulty />
+            <Difficulty rating={rating} setter={setRating}/>
             <button
                 className='save_button'
-                onClick={() => {
-
+                onClick={(e) => {
+                    handleSaveButtonClick(e)
                 }}>Save Trick</button>
         </div>
 

@@ -1,15 +1,13 @@
 import React, { useState } from 'react'
 
 
-export const StepsForm = () => {
-
-    const [formArr, setForm] = useState([{ details: "" }])
+export const StepsForm = ({formArr, setter}) => {
 
     const handleChange = (e, index) => {
         const {details, value} = e.target
         const copy = [...formArr]
         copy[index].details = value
-        setForm(copy)
+        setter(copy)
     }
 
     return (<>
@@ -26,7 +24,7 @@ export const StepsForm = () => {
             })
         }<br/>
         <button onClick={() => {
-            setForm([...formArr, { details: "" }])
+            setter([...formArr, { details: "" }])
         }}>New Line</button>
 
     </>

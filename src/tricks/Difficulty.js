@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { FaStar } from 'react-icons/fa'
 
-export const Difficulty = () => {
-    const [rating, setRating] = useState('1')
+export const Difficulty = ({rating, setter}) => {
+  
     const [hover, setHover] = useState('1')
 
     return (
@@ -12,7 +12,7 @@ export const Difficulty = () => {
                 const ratingValue = i + 1
                 return <label>
                     <input
-                        onClick={() => setRating(ratingValue)}
+                        onClick={() => setter(ratingValue)}
                         value={ratingValue}
                         type="radio"
                         name="rating" />

@@ -1,21 +1,23 @@
 import React, { useEffect, useState } from 'react'
+import { DogForm } from './DogForm'
 
-export const Dogs = () => {
+export const Dogs = ({dogList, setDogList, render}) => {
     const localTrickyUser = localStorage.getItem("tricky_user")
     const trickyUserObject = JSON.parse(localTrickyUser)
 
-    const [dogList, setDogList] = useState([])
+
 
     useEffect(() => {
 
         fetch('http://localhost:8088/dogs')
             .then(res => res.json())
             .then(data => setDogList(data))
-    }, []
 
-    )
-    return (
-        <article>
+        }, [render]
+        
+        )
+        return (<>
+            <article>
             {dogList.map(
                 (dog) => {
                 if (dog.ownerId === trickyUserObject.id) {
@@ -26,5 +28,7 @@ export const Dogs = () => {
             }
         })}
         </article>
+        </>
     )
+        
 }
