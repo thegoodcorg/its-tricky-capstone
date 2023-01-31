@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { LinkTrickToDog } from '../linkTrickToDog/LinkTrickToDog'
-import { DogsThatKnow } from '../linkTrickToDog/DogsThatKnow'
 import './tricks.css'
 
 export const Tricks = () => {
@@ -27,7 +26,6 @@ export const Tricks = () => {
           <Link to={`/tricks/${singleTrick.id}`}>
             {singleTrick.name} 
           </Link>
-          <DogsThatKnow passedTrick={singleTrick} />
           <LinkTrickToDog passedTrick={singleTrick}/><br/>
           Description: {singleTrick.description}
           <br/>

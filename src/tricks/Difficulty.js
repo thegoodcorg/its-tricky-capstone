@@ -10,7 +10,7 @@ export const Difficulty = ({rating, setter}) => {
         <p>Difficulty: {rating}/5</p>
             {[...Array(5)].map((star, i) => {
                 const ratingValue = i + 1
-                return <label>
+                return <label key={i}>
                     <input
                         onClick={() => setter(ratingValue)}
                         value={ratingValue}

@@ -43,12 +43,10 @@ export const LinkTrickToDog = ({ passedTrick }) => {
         fetchTricks()
     }, [])
 
-
     return <div>
         {dogs.map((dog) => {
-            // dogsKnowingTrick.map((singleTrick) => {
-                let test = dogsKnowingTrick.find((dogTrickList) => { return dogTrickList.dogId == dog.id})
-            if (!test) {
+            let returnedDogItem = dogsKnowingTrick?.find((dogTrickList) => { return dogTrickList.dogId == dog.id })
+            if (!returnedDogItem) {
                 return <div key={dog.id}>
                     <button
                         className="know_trick"
@@ -59,16 +57,12 @@ export const LinkTrickToDog = ({ passedTrick }) => {
                     <button className="learn_trick">teach {dog.name} this trick</button>
                 </div>
 
-            } if(test) {
+            } if (returnedDogItem) {
                 return <div>
-                     {dog.name} knows this trick!
+                    {dog.name} knows this trick!
                 </div>
             }
-              
-            })}
+
+        })}
     </div>
 }
-
-// if(dogsKnowingTrick.filter(filteredDog => dog.id == filteredDog.id).length == 1) {
-//     return `${dog.name} knows this!`
-//  }
