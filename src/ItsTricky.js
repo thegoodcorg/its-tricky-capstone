@@ -8,6 +8,7 @@ import { Tricks } from './tricks/Tricks'
 import { TrickDetails } from './tricks/TrickDetails'
 import { DogContainer } from './dogs/DogContainer'
 import { MyTricks } from './tricks/MyTricks'
+import { DogForm } from './dogs/DogForm'
 
 export const ItsTricky = () => {
   return (<>
@@ -30,6 +31,7 @@ export const ItsTricky = () => {
 		<Route path="tricks" element={<Tricks />} />
 		<Route path="tricks/:trickId" element={ <TrickDetails />} />
 		<Route path="dogs" element={ <DogContainer />} />
+		<Route path="dogs/addNew" element={ <DogForm />} />
 		<Route path="trick_form" element={ <MyTricks />} />
 		</Route>
 	</Routes>

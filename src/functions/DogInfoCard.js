@@ -5,7 +5,7 @@ export const DogInfoCard = ({ dog, tricks, breed }) => (
 
 
     <Card key={dog.id}>
-        <Image src={breed?.image?.url} size="mini" wrapped ui={false} />
+        <Image src={breed?.image?.url} wrapped ui={false} />
         <Card.Content>
             <Card.Header>{dog.name}</Card.Header>
             <Card.Meta>

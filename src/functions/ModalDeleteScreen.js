@@ -14,17 +14,17 @@ function ModalDeleteScreen({singleTrick, confirmDelete}) {
         .then(confirmDelete(singleTrick.id)
       )}
     >
-      <Header icon='archive' content='Archive Old Messages' />
+      <Header icon='delete' color='red' content='WARNING' />
       <Modal.Content>
-        <p>
-        Are you sure you want to delete {singleTrick.name}?
+        <p className=''>
+        Are you sure you want to delete {singleTrick.name}? This cannot be undone.
         </p>
       </Modal.Content>
       <Modal.Actions>
-        <Button color='red' onClick={() => setOpen(false)}>
+        <Button color='green' onClick={() => setOpen(false)}>
           <Icon name='remove' /> No
         </Button>
-        <Button color='green' onClick={() => confirmDelete(singleTrick.id)}>
+        <Button color='red' onClick={() => confirmDelete(singleTrick.id).then(setOpen(false))}>
           <Icon name='checkmark' /> Delete
         </Button>
       </Modal.Actions>

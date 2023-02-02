@@ -2,6 +2,8 @@ import { React, useEffect } from 'react'
 import { DogForm } from './DogForm'
 import { Dogs } from './Dogs'
 import { useState } from 'react'
+import { Button } from 'semantic-ui-react'
+import { Link } from 'react-router-dom'
 
 export const DogContainer = () => {
 
@@ -15,8 +17,15 @@ export const DogContainer = () => {
 
     const fetchDogs = () => {fetch(`http://localhost:8088/dogs?ownerId=${trickyUserObject.id}`)
     .then(res => res.json())
-    .then(data => setDogList(data))}
+    .then(data => setDogList([...data]))}
 
+    const fetchDogBreeds = () => {
+      fetch(`https://api.thedogapi.com/v1/breeds`, {
+          method: 'GET',
+          headers: {'X-Api-Key' : 'live_iZGeSbiRdAvRGo45Wc4864LL5EDo1ffUAFkx3iwuNrnbPSqnyxHLCJGXSYKO1jNi'}
+      }).then(res =>res.json())
+      .then(data =>setBreeds(data))
+  }
 
     useEffect(() => {
         fetch(`http://localhost:8088/tricklist?_expand=trick`)
@@ -32,18 +41,11 @@ export const DogContainer = () => {
       fetchDogBreeds()
     },[])
     
-    const fetchDogBreeds = () => {
-      fetch(`https://api.thedogapi.com/v1/breeds`, {
-          method: 'GET',
-          headers: {'X-Api-Key' : 'live_iZGeSbiRdAvRGo45Wc4864LL5EDo1ffUAFkx3iwuNrnbPSqnyxHLCJGXSYKO1jNi'}
-      }).then(res =>res.json())
-      .then(data =>setBreeds(data))
-  }
  
   
  return (<>
     <Dogs breeds={breeds} trickList={trickList} dogList={dogList} setDogList={setDogList} render={renderState}/>
-    <DogForm breeds={breeds} fetchBreeds={fetchDogBreeds}/>
+    <Link to="/dogs/addNew"><Button>Add a new dog</Button></Link>
   </>
   )
 }

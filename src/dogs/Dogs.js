@@ -27,7 +27,11 @@ export const Dogs = ({ trickList, breeds, dogList }) => {
         <Container style={{ marginTop: "35px" }}>
             <div>
                 <Card.Group itemsPerRow={3} stackable>
-                    {dogList.map(dog => <DogInfoCard dog={dog} tricks={tricksKnown(dog)} breed={currentDogBreed(dog)} />)}
+                    {dogList.map(dog => <DogInfoCard
+                     key={dog.id}
+                     dog={dog} 
+                     tricks={tricksKnown(dog)} 
+                     breed={currentDogBreed(dog)} />)}
                 </Card.Group>
             </div>
         </Container>)

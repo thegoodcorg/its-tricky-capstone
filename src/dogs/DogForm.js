@@ -1,8 +1,18 @@
 import { React, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export const DogForm = ({ breeds, fetchBreeds }) => {
+export const DogForm = ({ dogs, fetchDogs }) => {
+const [breeds, setBreeds] = useState()
 
+    const fetchDogBreeds = () => {
+        fetch(`https://api.thedogapi.com/v1/breeds`, {
+            method: 'GET',
+            headers: {'X-Api-Key' : 'live_iZGeSbiRdAvRGo45Wc4864LL5EDo1ffUAFkx3iwuNrnbPSqnyxHLCJGXSYKO1jNi'}
+        }).then(res =>res.json())
+        .then(data =>setBreeds(data))
+    }
 
+    const navigate = useNavigate()
     const localTrickyUser = localStorage.getItem("tricky_user")
     const trickyUserObject = JSON.parse(localTrickyUser)
 
@@ -12,8 +22,21 @@ export const DogForm = ({ breeds, fetchBreeds }) => {
         breedId: null
     })
 
+    useEffect(() => {
+        fetchDogBreeds()
+    },[])
 
-    const saveButtonHandler = () => {
+    useEffect(() => {
+        console.log('resetting state')
+        setNewDog({
+            name: "",
+            age: null,
+            breedId: null
+        })
+
+    }, [dogs])
+
+    const saveButtonHandler = (e) => {
 
         const dogPostObject = {
             name: newDog.name,
@@ -30,7 +53,7 @@ export const DogForm = ({ breeds, fetchBreeds }) => {
         }
         )
             .then(res => res.json())
-            .then((data) => fetchBreeds)
+            .then(navigate("/dogs"))
 
     }
 
@@ -54,13 +77,13 @@ export const DogForm = ({ breeds, fetchBreeds }) => {
                 const copy = { ...newDog }
                 copy.breedId = e.target.value
                 setNewDog(copy)
-            }}><option value="null">Please select a breed</option>
+            }}><option >Please select a breed</option>
             {breeds?.map((breed) => {
-                return <option value={breed.id}>{breed.name}</option>
+                return <option value={breed.id} key={breed.id}>{breed.name}</option>
             })}
         </select>
         <button className="save_dog"
-            onClick={() => saveButtonHandler()}>Save</button>
+            onClick={(e) => saveButtonHandler(e)}>Save</button>
     </>
     )
 }

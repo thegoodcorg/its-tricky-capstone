@@ -1,3 +1,8 @@
 .trickCard {
     margin: 15px !important;
 }
+.trick_content {
+    min-height: 50px !important;
+    max-height: 50px !important;
+    overflow: hidden;
+}

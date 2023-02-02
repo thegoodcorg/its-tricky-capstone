@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { TwoButtons } from '../functions/TwoButtons'
 
 export const LinkTrickToDog = ({ passedTrick }) => {
     const [dogs, updateDogs] = useState([])
@@ -49,7 +48,6 @@ export const LinkTrickToDog = ({ passedTrick }) => {
             let returnedDogItem = dogsKnowingTrick?.find((dogTrickList) => { return dogTrickList.dogId == dog.id })
             if (!returnedDogItem) {
                 return <div key={dog.id}>
-                    <TwoButtons dog={dog} />
                     <button
                         className="know_trick"
                         key={dog.id}

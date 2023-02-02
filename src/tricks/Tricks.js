@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { ReadDifficulty } from './ReadDifficulty'
-import { LinkTrickToDog } from '../linkTrickToDog/LinkTrickToDog'
 import './tricks.css'
 import { TrickDisplayCard } from '../functions/TrickDisplayCards'
 import { Card } from 'semantic-ui-react'
+import { TwoButtons } from '../functions/TwoButtons'
+import { TrickDetails } from './TrickDetails'
 
 
 export const Tricks = () => {
@@ -20,25 +19,8 @@ export const Tricks = () => {
 
 
  return ( <Card.Group className="trickContainer">
-  {trickList.map((singleTrick) => {
-  return TrickDisplayCard(singleTrick)
+  {trickList.map((singleTrick) => {return <TrickDisplayCard passedTrick={singleTrick}/>
   })}
  </Card.Group>
  )
 }
-
-// return (
-//   <section
-//     className={`tricks`}
-//     key={singleTrick.id}>
-//     <div className="trick_title"><Link to={`/tricks/${singleTrick.id}`}>
-//       {singleTrick.name}
-//     </Link></div>
-//     <p className="trick_description">
-//     {singleTrick.description}
-//     </p>
-//     <br/>
-//     <ReadDifficulty difficulty={singleTrick.difficulty} />
-//     <LinkTrickToDog passedTrick={singleTrick}/>
-//   </section>
-// )
