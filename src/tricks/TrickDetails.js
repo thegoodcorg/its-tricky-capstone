@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { TrickDetailsCard } from '../functions/TrickDetailsCard'
 
 export const TrickDetails = () => {
     const [trick, setTrick] = useState({})
@@ -35,25 +36,27 @@ export const TrickDetails = () => {
     
 
     return (
-        <section>
-            <h1>
-                {trick.name}
-            </h1>
-            <div className='trick_steps'>
-                {sortedSteps.map((step) => {
-                    return (<>
-                        <h3>Step {step.order}.</h3>
-                        <article>
-                            {step.details}
-                        </article>
-                        </>
-                    )
-                })}
-            </div>
-
-            <div>
-                Difficulty: {trick.difficulty} / 5
-            </div>
-        </section>
+        <TrickDetailsCard steps={steps} />
     )
 }
+
+        // <section>
+        //     <h1>
+        //         {trick.name}
+        //     </h1>
+        //     <div className='trick_steps'>
+        //         {sortedSteps.map((step) => {
+        //             return (<>
+        //                 <h3>Step {step.order}.</h3>
+        //                 <article>
+        //                     {step.details}
+        //                 </article>
+        //                 </>
+        //             )
+        //         })}
+        //     </div>
+
+        //     <div>
+        //         Difficulty: {trick.difficulty} / 5
+        //     </div>
+        // </section>

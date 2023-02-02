@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { FaStar } from 'react-icons/fa'
+import { BiBone } from 'react-icons/bi'
 
 export const Difficulty = ({rating, setter}) => {
   
@@ -16,7 +16,7 @@ export const Difficulty = ({rating, setter}) => {
                         value={ratingValue}
                         type="radio"
                         name="rating" />
-                    <FaStar className="star" 
+                    <BiBone className="star" 
                     size={50} 
                     color={ratingValue <= (hover || rating) ? "#ffc107" : "#e4e5e9"}
                     onMouseEnter={() => {setHover(ratingValue)}}

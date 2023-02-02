@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { TwoButtons } from '../functions/TwoButtons'
 
 export const LinkTrickToDog = ({ passedTrick }) => {
     const [dogs, updateDogs] = useState([])
@@ -8,7 +9,7 @@ export const LinkTrickToDog = ({ passedTrick }) => {
     const trickyUserObject = JSON.parse(localTrickyUser)
 
     const fetchTricks = () => {
-        fetch(`http://localhost:8088/tricklist?trickId=${passedTrick.id}&ownerId=${trickyUserObject.id}`)
+        fetch(`http://localhost:8088/tricklist?trickId=${passedTrick}&ownerId=${trickyUserObject.id}`)
             .then(res => res.json())
             .then(data => updateDogsKnowingTrick([...data]))
     }
@@ -16,7 +17,7 @@ export const LinkTrickToDog = ({ passedTrick }) => {
     const handleKnownTrick = (clicked) => {
         const objToApi = {
             dogId: clicked.id,
-            trickId: passedTrick.id,
+            trickId: passedTrick,
             known: true
         }
 
@@ -48,6 +49,7 @@ export const LinkTrickToDog = ({ passedTrick }) => {
             let returnedDogItem = dogsKnowingTrick?.find((dogTrickList) => { return dogTrickList.dogId == dog.id })
             if (!returnedDogItem) {
                 return <div key={dog.id}>
+                    <TwoButtons dog={dog} />
                     <button
                         className="know_trick"
                         key={dog.id}

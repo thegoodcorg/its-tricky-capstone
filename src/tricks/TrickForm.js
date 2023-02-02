@@ -68,7 +68,7 @@ export const TrickForm = ({ update }) => {
                 }
                 }></input>
             <br /><br />
-            Description: <input className='input-description'
+            Description: <br/><textarea rows="5" cols="30" className='input-description'
                 type="field"
                 placeholder="Give a short description of the desired effect"
                 onChange={(e) => {
@@ -76,7 +76,7 @@ export const TrickForm = ({ update }) => {
                     copy.description = e.target.value
                     updateNewTrick(copy)
                 }
-                }></input>
+                }></textarea>
             <br /><br />
             Steps:
             <StepsForm formArr={formArr} setter={setForm} />

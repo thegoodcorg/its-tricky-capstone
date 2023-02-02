@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import ModalDeleteScreen from '../functions/ModalDeleteScreen'
 
 export const UserCreatedTricks = ( { trickList, update } ) => {    
     
@@ -9,14 +9,12 @@ export const UserCreatedTricks = ( { trickList, update } ) => {
     }
 
    return trickList.map(singleTrick => {
-        return <div><h1>
+        return <div key={singleTrick.id}><h1>
             {singleTrick.name}
         </h1>
         <article>
             {singleTrick.description}
         </article>
-        <button onClick={() => {
-            deleteListing(singleTrick.id)
-        }}>Delete</button></div>
+        <ModalDeleteScreen singleTrick={singleTrick} confirmDelete={deleteListing} /></div>
     })
 }

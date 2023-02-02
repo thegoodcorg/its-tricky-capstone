@@ -5,7 +5,7 @@ import "./Login.css"
 import itsTrickyLogo from '../itsTrickyLogo.png'
 
 export const Login = () => {
-    const [email, set] = useState("hpassfield7@netvibes.com")
+    const [email, set] = useState("notafbihoneypot@legit.com")
     const navigate = useNavigate()
 
     const handleLogin = (e) => {
@@ -20,7 +20,7 @@ export const Login = () => {
                         id: user.id,
                     }))
 
-                    navigate("/")
+                    navigate("/dogs")
                 }
                 else {
                     window.alert("Invalid login")

@@ -1,3 +1,4 @@
-.tricks {
-    border: 2px black dotted;
+.trickContainer {
+    justify-content: center;
+    max-width: 75%;
 }

@@ -1,17 +1,17 @@
 import { React, useEffect, useState } from 'react'
 
-export const DogForm = ({ dogList, setter }) => {
+export const DogForm = ({ breeds, fetchBreeds }) => {
 
 
     const localTrickyUser = localStorage.getItem("tricky_user")
     const trickyUserObject = JSON.parse(localTrickyUser)
 
-    const [breeds, setBreeds] = useState([])
     const [newDog, setNewDog] = useState({
         name: "",
         age: null,
         breedId: null
     })
+
 
     const saveButtonHandler = () => {
 
@@ -30,15 +30,9 @@ export const DogForm = ({ dogList, setter }) => {
         }
         )
             .then(res => res.json())
-            .then((data) => setter(data))
+            .then((data) => fetchBreeds)
 
     }
-
-    useEffect(() => {
-        fetch('http://localhost:8088/breeds')
-            .then(res => res.json())
-            .then((data) => setBreeds(data))
-    }, [])
 
     return (<>
         <h1>Add a new dog here.</h1>
@@ -61,7 +55,7 @@ export const DogForm = ({ dogList, setter }) => {
                 copy.breedId = e.target.value
                 setNewDog(copy)
             }}><option value="null">Please select a breed</option>
-            {breeds.map((breed) => {
+            {breeds?.map((breed) => {
                 return <option value={breed.id}>{breed.name}</option>
             })}
         </select>
