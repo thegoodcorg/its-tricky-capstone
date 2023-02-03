@@ -1,0 +1,10 @@
+.step-container {
+background-color: aqua;
+}
+.step-details {
+
+}
+.header {
+    display: flex !important;
+    justify-content: center !important;
+}

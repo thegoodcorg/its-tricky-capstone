@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
-import { LinkTrickToDog } from '../linkTrickToDog/LinkTrickToDog'
-import { DogsThatKnow } from '../linkTrickToDog/DogsThatKnow'
 import './tricks.css'
+import { TrickDisplayCard } from '../functions/TrickDisplayCards'
+import { Card } from 'semantic-ui-react'
+import { TwoButtons } from '../functions/TwoButtons'
+import { TrickDetails } from './TrickDetails'
+
 
 export const Tricks = () => {
   const [trickList, setTricks] = useState([])
-  const nav = useNavigate()
 
   useEffect(() => {
     fetch('http://localhost:8088/tricks')
@@ -18,25 +18,9 @@ export const Tricks = () => {
   )
 
 
-  return (
-    trickList.map((singleTrick) => {
-      return (
-        <section
-          className={`tricks`}
-          key={singleTrick.id}>
-          <Link to={`/tricks/${singleTrick.id}`}>
-            {singleTrick.name} 
-          </Link>
-          <DogsThatKnow passedTrick={singleTrick} />
-          <LinkTrickToDog passedTrick={singleTrick}/><br/>
-          Description: {singleTrick.description}
-          <br/>
-          Difficulty: {singleTrick.difficulty}/5
-        </section>
-      )
-    }
-
-    )
-  )
+ return ( <Card.Group className="trickContainer">
+  {trickList.map((singleTrick) => {return <TrickDisplayCard key={singleTrick.id} passedTrick={singleTrick}/>
+  })}
+ </Card.Group>
+ )
 }
-

@@ -1,19 +1,42 @@
 import { React, useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
-export const DogForm = ({ dogList, setter }) => {
+export const DogForm = ({ dogs, fetchDogs }) => {
+const [breeds, setBreeds] = useState()
 
+    const fetchDogBreeds = () => {
+        fetch(`https://api.thedogapi.com/v1/breeds`, {
+            method: 'GET',
+            headers: {'X-Api-Key' : 'live_iZGeSbiRdAvRGo45Wc4864LL5EDo1ffUAFkx3iwuNrnbPSqnyxHLCJGXSYKO1jNi'}
+        }).then(res =>res.json())
+        .then(data =>setBreeds(data))
+    }
 
+    const navigate = useNavigate()
     const localTrickyUser = localStorage.getItem("tricky_user")
     const trickyUserObject = JSON.parse(localTrickyUser)
 
-    const [breeds, setBreeds] = useState([])
     const [newDog, setNewDog] = useState({
         name: "",
         age: null,
         breedId: null
     })
 
-    const saveButtonHandler = () => {
+    useEffect(() => {
+        fetchDogBreeds()
+    },[])
+
+    useEffect(() => {
+        console.log('resetting state')
+        setNewDog({
+            name: "",
+            age: null,
+            breedId: null
+        })
+
+    }, [dogs])
+
+    const saveButtonHandler = (e) => {
 
         const dogPostObject = {
             name: newDog.name,
@@ -30,15 +53,9 @@ export const DogForm = ({ dogList, setter }) => {
         }
         )
             .then(res => res.json())
-            .then((data) => setter(data))
+            .then(navigate("/dogs"))
 
     }
-
-    useEffect(() => {
-        fetch('http://localhost:8088/breeds')
-            .then(res => res.json())
-            .then((data) => setBreeds(data))
-    }, [])
 
     return (<>
         <h1>Add a new dog here.</h1>
@@ -60,13 +77,13 @@ export const DogForm = ({ dogList, setter }) => {
                 const copy = { ...newDog }
                 copy.breedId = e.target.value
                 setNewDog(copy)
-            }}><option value="null">Please select a breed</option>
-            {breeds.map((breed) => {
-                return <option value={breed.id}>{breed.name}</option>
+            }}><option >Please select a breed</option>
+            {breeds?.map((breed) => {
+                return <option value={breed.id} key={breed.id}>{breed.name}</option>
             })}
         </select>
         <button className="save_dog"
-            onClick={() => saveButtonHandler()}>Save</button>
+            onClick={(e) => saveButtonHandler(e)}>Save</button>
     </>
     )
 }

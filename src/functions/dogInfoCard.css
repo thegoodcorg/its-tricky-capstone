@@ -1,0 +1,6 @@
+img {
+display: block;
+justify-content: center;
+    max-width:100%;
+    object-fit: scale-down;
+}

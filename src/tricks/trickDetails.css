@@ -1,0 +1,5 @@
+.details-card {
+    display: flex !important;
+    flex-direction: row !important;
+    border: 2px red solid !important;
+}

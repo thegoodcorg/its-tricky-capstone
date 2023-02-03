@@ -3,7 +3,7 @@ import { Difficulty } from './Difficulty'
 import { StepsForm } from './StepsForm'
 import "./trickform.css"
 
-export const TrickForm = () => {
+export const TrickForm = ({ update }) => {
     const [newTrick, updateNewTrick] = useState({ name: "", ownerId: "", description: "", difficulty: 1 })
     const [formArr, setForm] = useState([{ details: "" }])
     const [rating, setRating] = useState(1)
@@ -15,15 +15,12 @@ export const TrickForm = () => {
         const localTrickyUser = localStorage.getItem("tricky_user")
         const trickyUserObject = JSON.parse(localTrickyUser)
 
-        // TODO: Create the object to be saved to the API
         const ticketToSend = {
             ownerId: trickyUserObject.id,
             name: newTrick.name,
             description: newTrick.description,
             difficulty: parseInt(rating)
         }
-        console.log(ticketToSend)
-        // TODO: Perform the fetch() to POST the object to the API
         fetch("http://localhost:8088/tricks", {
             method: "POST",
             headers: {
@@ -33,7 +30,7 @@ export const TrickForm = () => {
         }
         )
             .then(res => res.json())
-            .then((response) => { 
+            .then((response) => {
                 let stepCount = 1
                 formArr.map((step, stepCount) => {
                     const trickResponseObj = {
@@ -52,6 +49,7 @@ export const TrickForm = () => {
                     )
                         .then(res => res.json())
                         .then(stepCount++)
+                        .then(update(), console.log("fetch from button"))
                 })
 
             }
@@ -70,7 +68,7 @@ export const TrickForm = () => {
                 }
                 }></input>
             <br /><br />
-            Description: <input className='input-description'
+            Description: <br/><textarea rows="5" cols="30" className='input-description'
                 type="field"
                 placeholder="Give a short description of the desired effect"
                 onChange={(e) => {
@@ -78,12 +76,12 @@ export const TrickForm = () => {
                     copy.description = e.target.value
                     updateNewTrick(copy)
                 }
-                }></input>
+                }></textarea>
             <br /><br />
             Steps:
-            <StepsForm formArr={formArr} setter={setForm}/>
+            <StepsForm formArr={formArr} setter={setForm} />
             <br /><br />
-            <Difficulty rating={rating} setter={setRating}/>
+            <Difficulty rating={rating} setter={setRating} />
             <button
                 className='save_button'
                 onClick={(e) => {
