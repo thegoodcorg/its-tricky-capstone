@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import "./dogs.css"
-import { Card, Icon, Image, Container } from 'semantic-ui-react'
+import { Card, Icon, Container } from 'semantic-ui-react'
 import { DogInfoCard } from '../functions/DogInfoCard'
 
 export const Dogs = ({ trickList, breeds, dogList }) => {
@@ -14,9 +14,17 @@ export const Dogs = ({ trickList, breeds, dogList }) => {
 
     const tricksKnown = (dog) => trickList.map((singleTrick) => {
         if (singleTrick.dogId == dog.id && singleTrick.known == true) {
-            return <>
-                <Icon key={singleTrick.id} name='checkmark' />
-                {singleTrick.trick.name} </>
+            return <p key={singleTrick.id}>
+                <Icon key={singleTrick.id} name='checkmark' color="green"/>
+                {singleTrick.trick.name} </p>
+        }
+    }
+    )
+    const tricksLearning = (dog) => trickList.map((singleTrick) => {
+        if (singleTrick.dogId == dog.id && singleTrick.known == false) {
+            return <p key={singleTrick.id}>
+                <Icon key={singleTrick.id} name='checkmark' color="green"/>
+                {singleTrick.trick.name} </p>
         }
     }
     )
@@ -30,7 +38,8 @@ export const Dogs = ({ trickList, breeds, dogList }) => {
                     {dogList.map(dog => <DogInfoCard
                      key={dog.id}
                      dog={dog} 
-                     tricks={tricksKnown(dog)} 
+                     tricksKnown={tricksKnown(dog)} 
+                     tricksLearning={tricksLearning(dog)}
                      breed={currentDogBreed(dog)} />)}
                 </Card.Group>
             </div>

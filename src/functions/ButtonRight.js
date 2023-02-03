@@ -11,8 +11,8 @@ export const ButtonRight = ({ dogs, dogsKnowingTrick, handleTrickToLearn }) => {
           </div>
   
         } if (returnedDogItem) {
-          return <div>
-            {dog.name} knows this trick!
+          return <div key={dog.id}>
+            <Button disabled={true}>{dog.name} knows this trick!</Button>
           </div>
         }
   

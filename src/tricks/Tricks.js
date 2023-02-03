@@ -19,7 +19,7 @@ export const Tricks = () => {
 
 
  return ( <Card.Group className="trickContainer">
-  {trickList.map((singleTrick) => {return <TrickDisplayCard passedTrick={singleTrick}/>
+  {trickList.map((singleTrick) => {return <TrickDisplayCard key={singleTrick.id} passedTrick={singleTrick}/>
   })}
  </Card.Group>
  )

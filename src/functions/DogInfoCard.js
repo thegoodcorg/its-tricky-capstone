@@ -1,18 +1,33 @@
-import { Card, Icon, Image, Container } from 'semantic-ui-react'
+import { Segment, Divider, Grid, Card, Image} from 'semantic-ui-react'
 import React from 'react'
+import { Link } from 'react-router-dom'
+import './dogInfoCard.css'
 
-export const DogInfoCard = ({ dog, tricks, breed }) => (
+export const DogInfoCard = ({ dog, tricksKnown, tricksLearning, breed }) => (
 
 
     <Card key={dog.id}>
-        <Image src={breed?.image?.url} wrapped ui={false} />
+    <Link to={`/dogs/${dog.id}`} className="dogCard" key={dog.id}>
+        <Image className="dog_image" src={breed?.image?.url} wrapped ui={false} />
+        </Link>
         <Card.Content>
             <Card.Header>{dog.name}</Card.Header>
-            <Card.Meta>
-                {tricks}
-            </Card.Meta>
+            <Segment>
+                <Card.Meta>
+                    <Grid columns={2}>
+                        <Grid.Column>
+                            {tricksKnown}
+                        </Grid.Column>
+                    </Grid>
+                    <Divider vertical>
+                    </Divider>
+                        <Grid.Column>
+                            {tricksLearning}
+                        </Grid.Column>
+                </Card.Meta>
+            </Segment>
             <Card.Description>
-                {dog?.breed?.name}
+                {dog.breed?.name}
             </Card.Description>
         </Card.Content>
         <Card.Content extra>
