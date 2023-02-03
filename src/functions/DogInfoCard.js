@@ -13,19 +13,19 @@ export const DogInfoCard = ({ dog, tricksKnown, tricksLearning, breed }) => (
         <Card.Content>
             <Card.Header>{dog.name}</Card.Header>
             <Segment>
-                <Card.Meta>
-                    <Grid columns={2}>
-                        <Grid.Column>
-                            {tricksKnown}
-                        </Grid.Column>
-                    </Grid>
-                    <Divider vertical>
-                    </Divider>
-                        <Grid.Column>
-                            {tricksLearning}
-                        </Grid.Column>
-                </Card.Meta>
-            </Segment>
+    <Grid columns={2} relaxed='very'>
+      <Grid.Column>
+      <u>Known</u>
+      {tricksKnown}
+      </Grid.Column>
+      <Grid.Column>
+      <u>Learning</u>
+      {tricksLearning}
+      </Grid.Column>
+    </Grid>
+
+    <Divider vertical></Divider>
+  </Segment>
             <Card.Description>
                 {dog.breed?.name}
             </Card.Description>

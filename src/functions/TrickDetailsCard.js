@@ -20,7 +20,7 @@ handleKnownTrick={handleKnownTrick} />
     <ol>
       {
         steps.map(singleStep => {
-          return <li>
+          return <li key={singleStep.id}>
             {singleStep.details}
           </li>
         })

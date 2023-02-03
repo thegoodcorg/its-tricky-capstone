@@ -29,21 +29,29 @@ export const DogDetails = () => {
       .then(res => res.json())
       .then(res => {
         setKnownTricks(res.filter((trick) => trick.known),
-        setUnknownTricks(res.filter((trick) => !trick.known)))
+          setUnknownTricks(res.filter((trick) => !trick.known)))
       })
   }, [])
 
 
 
   const currentBreed = breeds.find(breed => breed.id == dog.breedId)
-  console.log(knownTricks, "knownTricks")
 
 
   return (<>
     <Image src={currentBreed?.image?.url} size="medium" />
     <p>Breed group: {currentBreed?.breed_group}</p>
     <section>
-    
+      <div>
+      <h2>What I know</h2>
+        {knownTricks.map(singleTrick =>
+          <p key={singleTrick.id}>{singleTrick.trick.name}</p>)}
+      </div>
+      <div>
+        <h2>What I'm learning</h2>
+        {unknownTricks.map(singleTrick =>
+          <p key={singleTrick.id}>{singleTrick.trick.name}</p>)}
+      </div>
     </section>
   </>)
 }

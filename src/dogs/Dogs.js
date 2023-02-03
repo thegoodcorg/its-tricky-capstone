@@ -15,7 +15,7 @@ export const Dogs = ({ trickList, breeds, dogList }) => {
     const tricksKnown = (dog) => trickList.map((singleTrick) => {
         if (singleTrick.dogId == dog.id && singleTrick.known == true) {
             return <p key={singleTrick.id}>
-                <Icon key={singleTrick.id} name='checkmark' color="green"/>
+                <Icon key={singleTrick.id} name='check circle' color="green"/>
                 {singleTrick.trick.name} </p>
         }
     }
@@ -23,7 +23,7 @@ export const Dogs = ({ trickList, breeds, dogList }) => {
     const tricksLearning = (dog) => trickList.map((singleTrick) => {
         if (singleTrick.dogId == dog.id && singleTrick.known == false) {
             return <p key={singleTrick.id}>
-                <Icon key={singleTrick.id} name='checkmark' color="green"/>
+                <Icon key={singleTrick.id} name='checkmark' color="yellow"/>
                 {singleTrick.trick.name} </p>
         }
     }
