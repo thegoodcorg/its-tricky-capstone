@@ -4,7 +4,8 @@ background-color: aqua;
 .step-details {
 
 }
-.header {
-    display: flex !important;
-    justify-content: center !important;
-}
+
+ol li {
+    border-bottom: 1px black solid;
+    margin-top: 15px;
+ }
