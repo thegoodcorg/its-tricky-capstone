@@ -1,0 +1,14 @@
+.trickForm {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+}
+
+.trickInputs {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+input[type="radio"]{
+    display: none;
+}

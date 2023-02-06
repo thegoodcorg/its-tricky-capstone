@@ -1,32 +1,35 @@
 import React from 'react'
+import "./steps.css"
+import { Form } from 'semantic-ui-react'
 
 
-export const StepsForm = ({formArr, setter}) => {
+export const StepsForm = ({ formArr, setter }) => {
 
     const handleChange = (e, index) => {
-        const {details, value} = e.target
+        const { details, value } = e.target
         const copy = [...formArr]
         copy[index].details = value
         setter(copy)
     }
 
-    return (<>
+    return (<div className="trickSteps">
         {
             formArr.map((form, index) => {
-                return <input
+                return <div
+                    className="steps"
                     key={index}
-                    id={`form-${index}`}
-                    placeholder={`Step ${index + 1}`}
-                    type="field"
-                    onChange={ (e) => {handleChange(e, index)}
-                    } />
-
+                    id={`form-${index}`}>
+                    <u>Step {index + 1}</u>
+                    <Form.TextArea
+                        onChange={(e) => { handleChange(e, index) }
+                        } />
+                </div>
             })
-        }<br/>
+        }<br />
         <button onClick={() => {
             setter([...formArr, { details: "" }])
         }}>New Line</button>
 
-    </>
+    </div>
     )
 }

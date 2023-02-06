@@ -1,3 +1,7 @@
+.trickStepsCard {
+    width:85% !important;
+}
+
 .step-container {
 background-color: aqua;
 }
@@ -8,4 +12,5 @@ background-color: aqua;
 ol li {
     border-bottom: 1px black solid;
     margin-top: 15px;
+    width: 60%
  }

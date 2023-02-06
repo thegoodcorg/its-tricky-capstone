@@ -1,0 +1,8 @@
+.trickSteps {
+    display: flex;
+    flex-direction: column;
+}
+
+.steps{
+    margin: 20px;
+}

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { ButtonLeft } from '../functions/ButtonLeft'
 import { TrickDetailsCard } from '../functions/TrickDetailsCard'
 import './trickDetails.css'
 export const TrickDetails = ({ singleTrick }) => {

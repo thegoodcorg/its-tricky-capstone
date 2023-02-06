@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { TrickForm } from './TrickForm'
+import { TrickForm } from '../functions/TrickForm'
 import { UserCreatedTricks } from './UserCreatedTricks'
 
 export const MyTricks = () => {
