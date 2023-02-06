@@ -41,10 +41,8 @@ export const DogDetails = () => {
 
 
   return (
-    <Card key={dog.id}>
-      <Link to={`/dogs/${dog.id}`} className="dogCard" key={dog.id}>
-        <Image className="dog_image" src={currentBreed?.image?.url} wrapped ui={false} />
-      </Link>
+    <Card key={dog.id} className="dogDetails">
+      <Image className="dog_image" src={currentBreed?.image?.url} wrapped ui={false} />
       <Card.Content>
         <Card.Header>{dog.name}</Card.Header>
         <Segment>
@@ -61,7 +59,6 @@ export const DogDetails = () => {
                   <p>{singleTrick.trick.name}</p></Link>)}
             </Grid.Column>
           </Grid>
-
           <Divider vertical></Divider>
         </Segment>
         <Card.Description>

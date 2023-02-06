@@ -5,7 +5,6 @@ import './dogInfoCard.css'
 
 export const DogInfoCard = ({ dog, tricksKnown, tricksLearning, breed }) => (
 
-
     <Card key={dog.id}>
     <Link to={`/dogs/${dog.id}`} className="dogCard" key={dog.id}>
         <Image className="dog_image" src={breed?.image?.url} wrapped ui={false} />

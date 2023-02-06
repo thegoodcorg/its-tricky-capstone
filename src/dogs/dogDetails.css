@@ -1,3 +1,7 @@
+.dogDetails {
+    width: 85% !important;
+}
+
 ul li {
 list-style: none;
 }
@@ -5,14 +9,9 @@ list-style: none;
     align-items: center;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
 }
 
-.learningTricks {
-    border: 1px solid red;
+.dog_image {
+    
 }
 
-.dogPhoto {
-    display: inline-block;
-    height: 10rem;
-}

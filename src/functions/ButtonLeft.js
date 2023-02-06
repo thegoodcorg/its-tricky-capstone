@@ -1,5 +1,4 @@
 import React from "react"
-import { Button } from "semantic-ui-react"
 
 export const ButtonLeft = ({dogs, dogsKnowingTrick, handleKnownTrick}) => {
 
@@ -7,10 +6,10 @@ export const ButtonLeft = ({dogs, dogsKnowingTrick, handleKnownTrick}) => {
       let returnedDogItem = dogsKnowingTrick?.find((dogTrickList) => { return dogTrickList.dogId == dog.id })
       if (!returnedDogItem) {
         return <div key={dog.id}>
-            <Button  className='Know_trick'
+            <button  className='Know_trick'
             onClick={() => { handleKnownTrick(dog) }
               }>{dog.name} knows this!
-            </Button>
+            </button>
             </div>}})
       }
   

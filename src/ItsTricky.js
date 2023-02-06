@@ -13,7 +13,8 @@ import { DogDetails } from './dogs/DogDetails'
 
 export const ItsTricky = () => {
   return (<>
-
+	
+	
 	 <Routes>
 		<Route path="/login" element={<Login />} />
 		<Route path="/register" element={<SignUp />} />
