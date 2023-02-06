@@ -1,0 +1,18 @@
+ul li {
+list-style: none;
+}
+.knownTricks {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.learningTricks {
+    border: 1px solid red;
+}
+
+.dogPhoto {
+    display: inline-block;
+    height: 10rem;
+}

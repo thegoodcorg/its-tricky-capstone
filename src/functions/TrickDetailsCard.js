@@ -1,8 +1,8 @@
 import React from 'react'
-import { Card, Feed} from 'semantic-ui-react'
-import './TrickDetailsCard.css'
+import { Card } from 'semantic-ui-react'
 import { ButtonLeft } from './ButtonLeft'
-import { ButtonRight } from './ButtonRight'
+import './TrickDetailsCard.css'
+import { TwoButtons } from './TwoButtons'
 
 export const TrickDetailsCard = ({ dogs,
  trick,
@@ -11,9 +11,7 @@ export const TrickDetailsCard = ({ dogs,
  handleKnownTrick, 
  steps }) => (<>
 
-<ButtonLeft dogs={dogs}
-dogsKnowingTrick={dogsKnowingTrick}
-handleKnownTrick={handleKnownTrick} />
+
 <Card>
     <Card.Content header={trick.name} />
     <Card.Content>
@@ -28,11 +26,9 @@ handleKnownTrick={handleKnownTrick} />
     </ol>
     </Card.Content>
     <Card.Content extra>
+    <TwoButtons passedTrick={trick}/>
     </Card.Content>
   </Card>
-  <ButtonRight dogs={dogs}
-dogsKnowingTrick={dogsKnowingTrick}
-handleTrickToLearn={handleTrickToLearn} />
 </>
 
 )

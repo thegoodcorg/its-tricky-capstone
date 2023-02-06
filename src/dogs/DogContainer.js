@@ -4,6 +4,7 @@ import { Dogs } from './Dogs'
 import { useState } from 'react'
 import { Button } from 'semantic-ui-react'
 import { Link, Route } from 'react-router-dom'
+import "./dogContainer.css"
 
 export const DogContainer = () => {
 
@@ -43,9 +44,9 @@ export const DogContainer = () => {
     
  
   
- return (<>
+ return (<section className='dogContainer'>
     <Dogs breeds={breeds} trickList={trickList} dogList={dogList} setDogList={setDogList} render={renderState}/>
-    <Link to="/dogs/addNew"><Button>Add a new dog</Button></Link>
-  </>
+    <Link to="/dogs/addNew"><Button className='addDogButton'>Add a new dog</Button></Link>
+  </section>
   )
 }
