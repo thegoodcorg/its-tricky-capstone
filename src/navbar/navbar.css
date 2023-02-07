@@ -1,12 +1,17 @@
+.nav_div {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: skyblue;
+}
+
 .user_navbar {
-    border: 1px black solid;
     display: flex;
     width: 85%;
     margin: 0;
     list-style: none;
     justify-content: space-around;
     align-items: center;
-    background-color: skyblue;
     font-size: x-large;
 }
 img {

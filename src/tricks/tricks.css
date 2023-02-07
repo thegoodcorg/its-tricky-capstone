@@ -1,5 +1,11 @@
+.trickSidebar {
+    margin: 0%;
+}
+
 .trickContainer {
+    display: flex;
     margin-top: 1% !important;
     justify-content: center !important;
-    max-width: 75% !important;
 }
+
+

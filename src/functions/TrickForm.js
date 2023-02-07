@@ -6,21 +6,84 @@ import { StepsForm } from '../tricks/StepsForm'
 
 export const TrickForm = () => {
 
+
+
+
+    const [newTrick, updateNewTrick] = useState({ name: "", ownerId: "", description: "", difficulty: 1 })
     const [formArr, setForm] = useState([{ details: "" }])
+    const [rating, setRating] = useState(1)
+
+
+    const handleSaveButtonClick = (event) => {
+        event.preventDefault()
+
+        const localTrickyUser = localStorage.getItem("tricky_user")
+        const trickyUserObject = JSON.parse(localTrickyUser)
+
+        const ticketToSend = {
+            ownerId: trickyUserObject.id,
+            name: newTrick.name,
+            description: newTrick.description,
+            difficulty: parseInt(rating)
+        }
+        fetch("http://localhost:8088/tricks", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(ticketToSend)
+        }
+        )
+            .then(res => res.json())
+            .then((response) => {
+                let stepCount = 1
+                formArr.map((step, stepCount) => {
+                    const trickResponseObj = {
+                        trickId: response.id,
+                        details: step.details,
+                        order: stepCount + 1
+                    }
+
+                    fetch("http://localhost:8088/steps", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(trickResponseObj)
+                    }
+                    )
+                        .then(res => res.json())
+                        .then(stepCount++)
+                })
+
+            }
+            )
+    }
 
 
 
   return (
     <Form className='trickForm'>
         <Form.Group className="trickInputs" widths='equal'>
-          <Form.Input fluid label='First name' placeholder='First name' />
-          <Form.TextArea label='Last name' placeholder='Last name' />
+          <Form.Input fluid label='Trick name' placeholder='First name' onChange={(e) => {
+        const copy = { ...newTrick }
+        copy.name = e.target.value
+        updateNewTrick(copy)
+    }}/>
+          <Form.TextArea label='Description' placeholder='Description' onChange={(e) => {
+        const copy = { ...newTrick }
+        copy.description = e.target.value
+        updateNewTrick(copy)
+    }
+    } />
         </Form.Group>
         <Form.Group inline>
         <StepsForm formArr={formArr} setter={setForm} />
         </Form.Group>
-        <Difficulty />
-        <Form.Button>Submit</Form.Button>
+        <Difficulty rating={rating} setter={setRating}/>
+        <Form.Button className='submitButton' onClick={(e) => {
+        handleSaveButtonClick(e)
+    }}>Submit</Form.Button>
       </Form>
   )
 }

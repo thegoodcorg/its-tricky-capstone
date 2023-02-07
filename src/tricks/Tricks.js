@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import './tricks.css'
 import { TrickDisplayCard } from '../functions/TrickDisplayCards'
-import { Card } from 'semantic-ui-react'
-import { TwoButtons } from '../functions/TwoButtons'
-import { TrickDetails } from './TrickDetails'
-
+import { Card, Sidebar } from 'semantic-ui-react'
+import { TricksSidebar } from '../functions/TricksSidebar'
 
 export const Tricks = () => {
   const [trickList, setTricks] = useState([])
@@ -18,9 +16,11 @@ export const Tricks = () => {
   )
 
 
- return ( <Card.Group className="trickContainer">
-  {trickList.map((singleTrick) => {return <TrickDisplayCard key={singleTrick.id} passedTrick={singleTrick}/>
-  })}
- </Card.Group>
- )
+  return (<>
+    <Card.Group className="trickContainer">
+      {trickList.map((singleTrick) => {
+        return <TrickDisplayCard key={singleTrick.id} passedTrick={singleTrick} />
+      })}
+    </Card.Group>
+  </>)
 }

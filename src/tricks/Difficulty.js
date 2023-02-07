@@ -6,7 +6,7 @@ export const Difficulty = ({rating, setter}) => {
     const [hover, setHover] = useState('1')
 
     return (
-        <div>
+        <div className='difficulty'>
         <p>Difficulty: {rating}/5</p>
             {[...Array(5)].map((star, i) => {
                 const ratingValue = i + 1
