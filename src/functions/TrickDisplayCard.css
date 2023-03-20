@@ -1,3 +1,7 @@
+.ui.cards.trickContainer {
+    width:85% !important;
+}
+
 .trickCard {
     margin: 15px !important;
 }

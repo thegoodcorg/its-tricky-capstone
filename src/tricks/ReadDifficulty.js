@@ -7,7 +7,7 @@ export const ReadDifficulty = ({difficulty}) => {
 
     return (
         <div>
-        <p>Difficulty: {difficulty}/5</p>
+        <p className='difficultyRating'>Difficulty: {difficulty}/5</p>
             {[...Array(5)].map((star, i) => {
                 const ratingValue = i + 1
                 return <label key={i}>

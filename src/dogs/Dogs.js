@@ -24,11 +24,10 @@ export const Dogs = ({ trickList, breeds, dogList }) => {
         if (singleTrick.dogId == dog.id && singleTrick.known == false) {
             return <p key={singleTrick.id}>
                 <Icon name='checkmark' color="yellow"/>
-                {singleTrick.trick.name} </p>
+                {singleTrick.trick?.name} </p>
         }
     }
     )
-
 
     return (
 

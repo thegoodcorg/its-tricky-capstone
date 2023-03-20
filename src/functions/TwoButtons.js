@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import { Button } from 'semantic-ui-react'
+import { Button, Segment } from 'semantic-ui-react'
 import { ButtonLeft } from './ButtonLeft'
 import { ButtonRight } from './ButtonRight'
-import { TrickDetailsCard } from './TrickDetailsCard'
+import { Grid, Divider } from 'semantic-ui-react'
+import "./twoButtons.css"
 
 export const TwoButtons = ({ steps, passedTrick }) => {
 
@@ -68,14 +69,23 @@ export const TwoButtons = ({ steps, passedTrick }) => {
     }, [])
 
 
-    return <>
-        <ButtonLeft
-            dogs={dogs}
-            dogsKnowingTrick={dogsKnowingTrick}
-            handleKnownTrick={handleKnownTrick} />
-        <ButtonRight dogs={dogs}
-            dogsKnowingTrick={dogsKnowingTrick}
-            handleTrickToLearn={handleTrickToLearn} />
-    </>
+    return <Segment>
+        <Grid columns={2} relaxed='very'>
+            <Grid.Column>
+                <ButtonLeft
+                    dogs={dogs}
+                    dogsKnowingTrick={dogsKnowingTrick}
+                    handleKnownTrick={handleKnownTrick} />
+            </Grid.Column>
+            <Grid.Column className='column-2'>
+                <ButtonRight dogs={dogs}
+                    dogsKnowingTrick={dogsKnowingTrick}
+                    handleTrickToLearn={handleTrickToLearn} />
+            </Grid.Column>
+        </Grid>
+        <Divider vertical><div className='knows'>Knows</div><div className='learning'>Learning</div></Divider>
+    </Segment>
 
 }
+
+

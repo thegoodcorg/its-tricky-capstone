@@ -1,4 +1,5 @@
 import ModalDeleteScreen from '../functions/ModalDeleteScreen'
+import { Card } from 'semantic-ui-react'
 
 export const UserCreatedTricks = ( { trickList, update } ) => {    
     
@@ -8,13 +9,22 @@ export const UserCreatedTricks = ( { trickList, update } ) => {
         }).then(update())
     }
 
-   return trickList.map(singleTrick => {
-        return <div key={singleTrick.id}><h1>
+   return <Card.Group className='userTrickCards'> {
+   trickList.map(singleTrick => {
+        return <Card key={singleTrick.id}>
+        <Card.Content>
+            <Card.Header>
             {singleTrick.name}
-        </h1>
-        <article>
+            </Card.Header>
+        <Card.Description>
             {singleTrick.description}
-        </article>
-        <ModalDeleteScreen singleTrick={singleTrick} confirmDelete={deleteListing} /></div>
-    })
+        </Card.Description>
+        </Card.Content>
+        <Card.Content extra>
+        <ModalDeleteScreen singleTrick={singleTrick} confirmDelete={deleteListing} />
+        </Card.Content>
+        </Card>
+    }
+    )}
+    </Card.Group>
 }

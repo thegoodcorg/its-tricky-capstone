@@ -3,3 +3,8 @@
     flex-direction: row !important;
     border: 2px red solid !important;
 }
+
+.difficultyRating {
+    display: flex !important;
+    justify-content: center !important;
+}

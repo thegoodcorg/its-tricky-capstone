@@ -1,0 +1,20 @@
+.trickForm {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 2%;
+}
+
+.trickInputs {
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+input[type="radio"]{
+    display: none;
+}
+
+.userTrickCards {
+    width: 50% !important;
+    justify-content: flex-start !important;
+}

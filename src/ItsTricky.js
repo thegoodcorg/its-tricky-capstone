@@ -10,6 +10,7 @@ import { DogContainer } from './dogs/DogContainer'
 import { MyTricks } from './tricks/MyTricks'
 import { DogForm } from './dogs/DogForm'
 import { DogDetails } from './dogs/DogDetails'
+import "./itsTricky.css"
 
 export const ItsTricky = () => {
   return (<>

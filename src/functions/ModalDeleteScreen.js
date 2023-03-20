@@ -11,8 +11,7 @@ function ModalDeleteScreen({singleTrick, confirmDelete}) {
       trigger={<Button>Delete Trick</Button>}
       onClose={() => setOpen(false)}
       onOpen={() => setOpen(true)
-        .then(confirmDelete(singleTrick.id)
-      )}
+        }
     >
       <Header icon='delete' color='red' content='WARNING' />
       <Modal.Content>
@@ -24,7 +23,7 @@ function ModalDeleteScreen({singleTrick, confirmDelete}) {
         <Button color='green' onClick={() => setOpen(false)}>
           <Icon name='remove' /> No
         </Button>
-        <Button color='red' onClick={() => confirmDelete(singleTrick.id).then(setOpen(false))}>
+        <Button color='red' onClick={() => confirmDelete(singleTrick?.id)}>
           <Icon name='checkmark' /> Delete
         </Button>
       </Modal.Actions>
