@@ -4,9 +4,8 @@ import { Tricks } from '../tricks/Tricks'
 import "../tricks/trickSidebar.css"
 
 export const TricksSidebar = () => { 
-    return <Sidebar.Pushable as={Segment} >
-    <Sidebar
-    className='trickSidebar'
+    return <Sidebar
+     className="sidebarModule"
       as={Menu}
       animation='overlay'
       icon='labeled'
@@ -27,12 +26,4 @@ export const TricksSidebar = () => {
         Information
       </Menu.Item>
     </Sidebar>
-
-    <Sidebar.Pusher>
-      <Segment basic className='trickContainer'>
-        <Header as='h3'>Application Content</Header>
-        <Tricks />
-      </Segment>
-    </Sidebar.Pusher>
-  </Sidebar.Pushable>
-}
+ }

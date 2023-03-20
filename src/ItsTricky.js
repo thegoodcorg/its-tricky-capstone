@@ -10,7 +10,7 @@ import { DogContainer } from './dogs/DogContainer'
 import { MyTricks } from './tricks/MyTricks'
 import { DogForm } from './dogs/DogForm'
 import { DogDetails } from './dogs/DogDetails'
-import { TricksContainer } from './tricks/TricksContainer'
+import "./itsTricky.css"
 
 export const ItsTricky = () => {
   return (<>
@@ -30,7 +30,7 @@ export const ItsTricky = () => {
 
 		}>
 
-		<Route path="tricks" element={<TricksContainer />} />
+		<Route path="tricks" element={<Tricks />} />
 		<Route path="tricks/:trickId" element={ <TrickDetails />} />
 		<Route path="dogs" element={ <DogContainer />} />
 		<Route path="dogs/:dogId" element={ <DogDetails />} />

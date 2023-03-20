@@ -7,12 +7,12 @@ import { TwoButtons } from './TwoButtons'
 export const TrickDetailsCard = ({ trick, steps }) => (
   <>
     <Card className="trickStepsCard">
-      <Card.Content header={trick.name} />
-      <Card.Content>
+      <Card.Content header={trick.name} className="trickHeader"/>
+      <Card.Content className='trickSteps'>
         <ol>
           {
             steps.map(singleStep => {
-              return <li key={singleStep.id}>
+              return <li className='step' key={singleStep.id}>
                 {singleStep.details}
               </li>
             })

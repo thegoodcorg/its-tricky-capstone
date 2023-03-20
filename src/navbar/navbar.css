@@ -13,6 +13,7 @@
     justify-content: space-around;
     align-items: center;
     font-size: x-large;
+    border: none !important;
 }
 img {
     justify-content: flex-start;

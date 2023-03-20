@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Card, Image } from 'semantic-ui-react'
 import { Link, useParams } from 'react-router-dom'
+import "./relatedDogs.css"
 
 export const RelatedDogs = () => {
 
@@ -8,7 +9,7 @@ export const RelatedDogs = () => {
     const [breeds, setBreeds] = useState([])
 
     const trick = useParams()
-   
+
     const getRelatedDogs = () => {
         fetch(`http://localhost:8088/tricklist?trickId=${trick.trickId}&known=true&_expand=dog`)
             .then(res => res.json())
@@ -36,24 +37,23 @@ export const RelatedDogs = () => {
         getRelatedDogs()
     }, [])
 
-    return (<div key={relatedDogs}>
+    return (<div className="relatedDogs" key={relatedDogs}>
         <p>good bois who know this trick</p>
         <Card.Group>
             {relatedDogs.map((singleDog) => {
                 let breed = currentDogBreed(singleDog.dog)
-                return <Card key={singleDog.dog.id}>
-                    <Link to={`/dogs/${singleDog.dog.id}`} className="dogCard">
-                        <Image className="dog_image" src={breed?.image?.url} wrapped ui={false} />
+                return <Card key={singleDog.dog.id} className="relatedDogCard">
+                    <Link to={`/dogs/${singleDog.dog.id}`}>
+                        <Image src={breed?.image?.url} wrapped ui={false} />
                     </Link>
                     <Card.Content>
                         <Card.Header>
                             {singleDog.dog.name}
                         </Card.Header>
                     </Card.Content>
-
                 </Card>
             })}
         </Card.Group>
-        </div>
+    </div>
     )
 }

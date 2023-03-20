@@ -1,0 +1,17 @@
+.relatedDogs {
+    display: flex !important;
+    flex-direction: column;
+    width: 85%;
+    align-items: center;
+}
+
+.cards {
+    width: 100% !important;
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.relatedDogCard {
+    max-width: 15% !important;
+}
+

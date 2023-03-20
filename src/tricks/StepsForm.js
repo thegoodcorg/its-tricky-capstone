@@ -21,6 +21,7 @@ export const StepsForm = ({ formArr, setter }) => {
                     id={`form-${index}`}>
                     <u>Step {index + 1}</u>
                     <Form.TextArea
+                    value={form.details}
                         onChange={(e) => { handleChange(e, index) }
                         } />
                 </div>
@@ -28,7 +29,7 @@ export const StepsForm = ({ formArr, setter }) => {
         }<br />
         <button onClick={() => {
             setter([...formArr, { details: "" }])
-        }}>New Line</button>
+        }}>Next Step</button>
 
     </div>
     )

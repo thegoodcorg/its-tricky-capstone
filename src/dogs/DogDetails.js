@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { Image, Segment } from 'semantic-ui-react'
-import { Card, Grid, Divider } from 'semantic-ui-react'
+import { Card, Grid, Divider, Icon } from 'semantic-ui-react'
 import "./dogDetails.css"
 
 export const DogDetails = () => {
@@ -52,13 +52,15 @@ export const DogDetails = () => {
             <Grid.Column>
               <u>Known</u>
               {knownTricks.map(singleTrick =>
-                <Link to={`/tricks/${singleTrick.trickId}`} key={singleTrick.id}><p>{singleTrick.trick.name}</p></Link>)}
+              
+                <Link to={`/tricks/${singleTrick.trickId}`} key={singleTrick.id}><p>  <Icon key={singleTrick.id} name='check circle' color="green"/>{singleTrick.trick.name}</p></Link>)}
             </Grid.Column>
             <Grid.Column>
               <u>Learning</u>
               {unknownTricks.map(singleTrick =>
                 <Link to={`/tricks/${singleTrick.trickId}`} key={singleTrick.id}>
-                  <p>{singleTrick.trick.name}</p></Link>)}
+                  <p> <Icon name='checkmark' color="yellow"/>
+                  {singleTrick.trick.name}</p></Link>)}
             </Grid.Column>
           </Grid>
 

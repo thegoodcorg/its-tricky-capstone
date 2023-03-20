@@ -19,5 +19,8 @@
     align-items: center;
     background-color: skyblue;
     border-radius: 5%;
+}
 
+fieldset {
+    border: none;
 }

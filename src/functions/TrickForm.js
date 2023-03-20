@@ -1,13 +1,10 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import { Form } from 'semantic-ui-react'
 import "./TrickForm.css"
 import { Difficulty } from "../tricks/Difficulty"
 import { StepsForm } from '../tricks/StepsForm'
 
-export const TrickForm = () => {
-
-
-
+export const TrickForm = ({update}) => {
 
     const [newTrick, updateNewTrick] = useState({ name: "", ownerId: "", description: "", difficulty: 1 })
     const [formArr, setForm] = useState([{ details: "" }])
@@ -36,7 +33,6 @@ export const TrickForm = () => {
         )
             .then(res => res.json())
             .then((response) => {
-                let stepCount = 1
                 formArr.map((step, stepCount) => {
                     const trickResponseObj = {
                         trickId: response.id,
@@ -54,38 +50,44 @@ export const TrickForm = () => {
                     )
                         .then(res => res.json())
                         .then(stepCount++)
-                })
-
+                       
+                }
+                )
             }
-            )
+            ) .then(updateNewTrick({ name: "", ownerId: "", description: "", difficulty: 1 }), setRating(1), setForm([{ details: "" }]), update())
     }
-
-
-
-  return (
-    <Form className='trickForm'>
-        <Form.Group className="trickInputs" widths='equal'>
-          <Form.Input fluid label='Trick name' placeholder='First name' onChange={(e) => {
-        const copy = { ...newTrick }
-        copy.name = e.target.value
-        updateNewTrick(copy)
-    }}/>
-          <Form.TextArea label='Description' placeholder='Description' onChange={(e) => {
-        const copy = { ...newTrick }
-        copy.description = e.target.value
-        updateNewTrick(copy)
-    }
-    } />
-        </Form.Group>
-        <Form.Group inline>
-        <StepsForm formArr={formArr} setter={setForm} />
-        </Form.Group>
-        <Difficulty rating={rating} setter={setRating}/>
-        <Form.Button className='submitButton' onClick={(e) => {
-        handleSaveButtonClick(e)
-    }}>Submit</Form.Button>
-      </Form>
-  )
+    
+    return (<div className='trickForm'>
+        <Form>
+            <Form.Group className="trickInputs" widths='equal'>
+                <Form.Input 
+                fluid label='Trick name' 
+                value={newTrick?.name}
+                placeholder='First name' onChange={(e) => {
+                    const copy = { ...newTrick }
+                    copy.name = e.target.value
+                    updateNewTrick(copy)
+                }} />
+                <Form.TextArea
+                label='Description' 
+                value={newTrick?.description}
+                placeholder='Description' onChange={(e) => {
+                    const copy = { ...newTrick }
+                    copy.description = e.target.value
+                    updateNewTrick(copy)
+                }
+                } />
+            </Form.Group>
+            <Form.Group inline>
+                <StepsForm formArr={formArr} setter={setForm} />
+            </Form.Group>
+            <Difficulty rating={rating} setter={setRating} />
+            <Form.Button className='submitButton' onClick={(e) => {
+                handleSaveButtonClick(e)
+            }}>Submit</Form.Button>
+        </Form>
+    </div>
+    )
 }
 
 

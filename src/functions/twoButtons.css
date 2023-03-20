@@ -1,0 +1,27 @@
+.knows {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    height: 3em !important;
+    width: 3em !important;
+    rotate: -90deg;
+    left: 10px;
+    top: 15px;
+ }
+ 
+ .learning {
+    position: relative;
+    display: flex;
+    justify-content: flex-start !important;
+    height: 3em !important;
+    width: 3em !important;
+    rotate: 90deg;
+    bottom: 98px;
+    right: 12px    
+}
+
+.column-2 {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+}
